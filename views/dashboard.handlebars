@@ -1,0 +1,83 @@
+<h1>My Dashboard</h1>
+<button type="button" id="newPostBtn" class="btn btn-primary btn-lg">Create New Post</button>
+
+{{!-- Create post modal div --}}
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">New Post</h5>
+                <button type="button" id="xModalBtn" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Title</label>
+                        <input type="text" class="form-control" id="titleInput" placeholder="Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">Body</label>
+                        <input type="text" class="form-control" id="bodyInput" placeholder="Post/blog">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="saveBtn" class="btn btn-primary">Save changes</button>
+                <button type="button" id="closeBtn" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- Update Modal Div --}}
+<div class="modal" id="myModalUpdate" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update your Post</h5>
+                <button type="button" id="xModalBtnUpdate" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Title</label>
+                        <input type="text" class="form-control" id="titleInputUpdate" placeholder="Updated Title">
+                    </div>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput2">Body</label>
+                        <input type="text" class="form-control" id="bodyInputUpdate" placeholder="Updated Post">
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="form-control" id="postId" value = {{post.id}}>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="saveBtnUpdate" class="btn btn-primary">Save changes</button>
+                <button type="button" id="closeBtnUpdate" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{#if posts.length}}
+<section id="postsEl">
+    <h2>Your Posts</h2>
+    <ol>
+        {{#each posts as |post|}}
+        <li>
+            {{> post-info post}}
+            <button class= "edit-button" onclick="updatePostHandler(this)" id={{post.id}}>Edit post</button>
+            <button class= "edit-button" onclick="deleteButtonHandler(this)" id={{post.id}}>Delete</button>
+        </li>
+        {{/each}}
+    </ol>
+</section>
+{{/if}}
+
+<script src="/javascript/dashboard.js"></script>
+<script src="/javascript/editPost.js"></script>

@@ -1,0 +1,13 @@
+{{> post-info post }}
+{{#if loggedIn}}
+  <div class="form-group">
+    <label for="exampleFormControlTextarea1">Add a Comment Below</label>
+    <textarea id="addCommentInput" class="form-control" rows="3"></textarea>
+  </div>
+<button type="button" id="addCommentBtn" class="btn btn-primary">Add</button>
+</div>
+{{/if}}
+{{> comments post.comments}}
+
+
+<script src="/javascript/comment.js"></script>
